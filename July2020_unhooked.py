@@ -278,8 +278,7 @@ def save_for_plot():
             if len(plot_dict[Header_list[i]])> frame_length :        # if dict reaches max length, delete first value.
                 plot_dict[Header_list[i]] = plot_dict[Header_list[i]][1:]
     #print(plot_dict)
-def plot_to_GUI():
-    pass
+
 ########################################################################################################################
 #                               SET UP FOR save_to_csv
 priority = "POWERON"                                              # Change priority if you want to record SHED 1 values
@@ -716,66 +715,66 @@ def background_communication():
             else:
                 pump_error[n] = 0
 
-    while True:
+    #while True:
         #sleep(.001)
-        def update_maq20():# include function if connected to MAQ20
-            global DIOL_1,DIOL_2,DIOL_3,DIOL_4, T, AI
-            DIOL_1 = (DIOL_mod1.read_data(0, number_of_channels=DIOL_mod1.get_number_of_channels()))
-            DIOL_2 = (DIOL_mod2.read_data(0, number_of_channels=DIOL_mod2.get_number_of_channels()))
-            DIOL_3 = (DIOL_mod3.read_data_counts(0, number_of_channels=DIOL_mod3.get_number_of_channels()))
-            DIOL_4 = (DIOL_mod4.read_data_counts(0, number_of_channels=DIOL_mod4.get_number_of_channels()))
-            T = (TTC_mod.read_data(0, number_of_channels=TTC_mod.get_number_of_channels()))
-            AI = (AI_mod.read_data(0, number_of_channels=AI_mod.get_number_of_channels()))
-            read_serial()
-        def update_unhooked():
-            global DIOL_1, DIOL_2, DIOL_3, DIOL_4, T, AI
-            for i in range (0,5):
-                DIOL_1[i] = random.randint(0,1)
-                DIOL_2[i] = random.randint(0,1)
-                DIOL_3[i] = random.randint(0,1)
-                DIOL_4[i] = random.randint(0,1)
-            for i in range (0,8):
-                T[i] = random.uniform(10,65)
-                AI[i] = random.uniform(0.5,.6)
-                flowrate[i] = random.uniform(0.15,10.6)
-        if demo == 1:
-            update_unhooked()
-        if demo == 0:
-            update_maq20()
+    def update_maq20():# include function if connected to MAQ20
+        global DIOL_1,DIOL_2,DIOL_3,DIOL_4, T, AI
+        DIOL_1 = (DIOL_mod1.read_data(0, number_of_channels=DIOL_mod1.get_number_of_channels()))
+        DIOL_2 = (DIOL_mod2.read_data(0, number_of_channels=DIOL_mod2.get_number_of_channels()))
+        DIOL_3 = (DIOL_mod3.read_data_counts(0, number_of_channels=DIOL_mod3.get_number_of_channels()))
+        DIOL_4 = (DIOL_mod4.read_data_counts(0, number_of_channels=DIOL_mod4.get_number_of_channels()))
+        T = (TTC_mod.read_data(0, number_of_channels=TTC_mod.get_number_of_channels()))
+        AI = (AI_mod.read_data(0, number_of_channels=AI_mod.get_number_of_channels()))
+        read_serial()
+    def update_unhooked():
+        global DIOL_1, DIOL_2, DIOL_3, DIOL_4, T, AI
+        for i in range (0,5):
+            DIOL_1[i] = random.randint(0,1)
+            DIOL_2[i] = random.randint(0,1)
+            DIOL_3[i] = random.randint(0,1)
+            DIOL_4[i] = random.randint(0,1)
+        for i in range (0,8):
+            T[i] = random.uniform(10,65)
+            AI[i] = random.uniform(0.5,.6)
+            flowrate[i] = random.uniform(0.15,10.6)
+    if demo == 1:
+        update_unhooked()
+    if demo == 0:
+        update_maq20()
 
-        valve_pid1()
-        valve_pid2()
-        output_control()
-        flow_check()
-        alarm_function()
-        #flash_()
-        pump_error_check()
-        new_in = [DIOL_1[5], DIOL_1[6], DIOL_1[7], DIOL_1[8], DIOL_1[9], DIOL_2[5], DIOL_2[6],
-                  DIOL_2[7]]  # used to compare to current_in
-        #for n in range(0, 8):
-         #   if new_in[n] != current_in[n]:
-        #        pulse_count[n] += 1  # should it be .5? .5 for each up or down?
-         #       print("Count" + str(n) + ": " + str(pulse_count[n]))
-          #      current_in[n] = new_in[n]
-           #     flowrate[n] = (((pulse_count[n] - prev_count[n]) / ppg[n]) * 60) / ((time.time() - prev_time[n]))
-            #    prev_count[n] = pulse_count[n]
-             #   prev_time[n] = time.time()
-            #elif new_in[n] == current_in[n] and (time.time()-prev_time[n]) > .5:
-             #   flowrate[n] = 0.0
-            #else:
-             #   pass#print('error')
-        if exit_case == True:
-            pump_io = [0] * 8
-            DIOL_mod1[0] = 0
-            DIOL_mod1[1] = 0
-            DIOL_mod1[2] = 0
-            DIOL_mod1[3] = 0
-            DIOL_mod1[4] = 0
-            DIOL_mod2[0] = 0
-            DIOL_mod2[1] = 0
-            DIOL_mod2[2] = 0
+    valve_pid1()
+    valve_pid2()
+    output_control()
+    flow_check()
+    alarm_function()
+    #flash_()
+    pump_error_check()
+    new_in = [DIOL_1[5], DIOL_1[6], DIOL_1[7], DIOL_1[8], DIOL_1[9], DIOL_2[5], DIOL_2[6],
+              DIOL_2[7]]  # used to compare to current_in
+    #for n in range(0, 8):
+     #   if new_in[n] != current_in[n]:
+    #        pulse_count[n] += 1  # should it be .5? .5 for each up or down?
+     #       print("Count" + str(n) + ": " + str(pulse_count[n]))
+      #      current_in[n] = new_in[n]
+       #     flowrate[n] = (((pulse_count[n] - prev_count[n]) / ppg[n]) * 60) / ((time.time() - prev_time[n]))
+        #    prev_count[n] = pulse_count[n]
+         #   prev_time[n] = time.time()
+        #elif new_in[n] == current_in[n] and (time.time()-prev_time[n]) > .5:
+         #   flowrate[n] = 0.0
+        #else:
+         #   pass#print('error')
+    if exit_case == True:
+        pump_io = [0] * 8
+        DIOL_mod1[0] = 0
+        DIOL_mod1[1] = 0
+        DIOL_mod1[2] = 0
+        DIOL_mod1[3] = 0
+        DIOL_mod1[4] = 0
+        DIOL_mod2[0] = 0
+        DIOL_mod2[1] = 0
+        DIOL_mod2[2] = 0
 
-            sys.exit()
+        sys.exit()
 
 def record_values_in_csv(priority):
     start_date = datetime.now().strftime("%H_%M_%S")
@@ -1454,11 +1453,11 @@ sched = BackgroundScheduler()
 sched.start()
 sched.add_job(flash__,'interval',seconds = 1)
 sched.add_job(save_for_plot, 'interval', seconds = plot_interval)
+sched.add_job(background_communication,'interval',seconds = .5)
 background_thread = threading.Thread(target=background_communication)
 GUI_thread = threading.Thread(target=GUI)
 
 
-background_thread.start()
+#background_thread.start()
 GUI_thread.start()
 
-plot_to_GUI()
