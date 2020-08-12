@@ -95,13 +95,14 @@ if demo == 1:
 ##########################################################
 #              Global Flow Rate Variables                #
 ##########################################################
-ser = serial.Serial(
-        port='/dev/ttyS0', #Replace ttyS0 with ttyAM0 for Pi1,Pi2,Pi0
-        baudrate = 9600,
-        parity=serial.PARITY_NONE,
-        stopbits=serial.STOPBITS_ONE,
-        bytesize=serial.EIGHTBITS,
-        timeout=1
+if demo == 0:
+    ser = serial.Serial(
+            port='/dev/ttyS0', #Replace ttyS0 with ttyAM0 for Pi1,Pi2,Pi0
+            baudrate = 9600,
+            parity=serial.PARITY_NONE,
+            stopbits=serial.STOPBITS_ONE,
+            bytesize=serial.EIGHTBITS,
+            timeout=1
 )
 counter=0
 prev_count = [0] * 8
