@@ -1,4 +1,4 @@
-from maq20 import MAQ20
+#from maq20 import MAQ20
 import time
 import sys
 from time import sleep
@@ -211,7 +211,6 @@ def flash__():
 
 def read_serial(): # place function in while loop to get continuous reading
     global frequency, flowrate, prev_count, prev_time
-
     current_time = time.time()
     sample_time = current_time-prev_time
 
@@ -726,6 +725,7 @@ def background_communication():
             DIOL_4 = (DIOL_mod4.read_data_counts(0, number_of_channels=DIOL_mod4.get_number_of_channels()))
             T = (TTC_mod.read_data(0, number_of_channels=TTC_mod.get_number_of_channels()))
             AI = (AI_mod.read_data(0, number_of_channels=AI_mod.get_number_of_channels()))
+            read_serial()
         def update_unhooked():
             global DIOL_1, DIOL_2, DIOL_3, DIOL_4, T, AI
             for i in range (0,5):
@@ -736,11 +736,12 @@ def background_communication():
             for i in range (0,8):
                 T[i] = random.uniform(10,65)
                 AI[i] = random.uniform(0.5,.6)
+                flowrate[i] = random.uniform(0.15,10.6)
         if demo == 1:
             update_unhooked()
         if demo == 0:
             update_maq20()
-        read_serial()
+
         valve_pid1()
         valve_pid2()
         output_control()
