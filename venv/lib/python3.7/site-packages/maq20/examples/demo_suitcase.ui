@@ -1,0 +1,1793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>910</width>
+    <height>601</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+    <weight>50</weight>
+    <bold>false</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MAQ20 Demo Suitcase</string>
+  </property>
+  <property name="whatsThis">
+   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;MAQ20 Process Simulator Demonstration System&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;/&gt;&lt;/p&gt;&lt;p&gt;The MAQ20 Process Simulator Demonstration System was developed by Dataforth in order to showcase the operation of the MAQ20 system. The demonstration consists of the minimum size MAQ20-BKPL4 backbone having 4 IO modules slots. Modules within the system cover the basic functionality of a data acquisition and control system, modules include: &lt;/p&gt;&lt;p/&gt;&lt;p&gt;MAQ20-COM4 Communication Module Supporting RS485, Ethernet and USB connectivity &lt;/p&gt;&lt;p&gt;MAQ20-JTC 8 Channel J Type Thermocouple Input Module &lt;/p&gt;&lt;p&gt;MAQ20-VO 8 Channel Voltage Output Module &lt;/p&gt;&lt;p&gt;MAQ20-VDN 8 Channel Differential Voltage Input &lt;/p&gt;&lt;p&gt;MAQ20-DIOL 10 Channel (5 In 5 Out) Digital IO Module With Special Functions &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_11">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_23">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-weight:600; color:#cc7832;&quot;&gt;from &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#a9b7c6;&quot;&gt;maq20 &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-weight:600; color:#cc7832;&quot;&gt;import &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#a9b7c6;&quot;&gt;MAQ20&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#a9b7c6;&quot;&gt;MAQ20Module&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-weight:600; color:#cc7832;&quot;&gt;from &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#a9b7c6;&quot;&gt;maq20.modules &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-weight:600; color:#cc7832;&quot;&gt;import &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#a9b7c6;&quot;&gt;outputmodule&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; color:#a9b7c6; background-color:#344134;&quot;&gt;diol&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="whatsThis">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;MAQ20 Process Simulator Demonstration System&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;/&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;The MAQ20 Process Simulator Demonstration System was developed by Dataforth in order to showcase the operation of the MAQ20 system. The demonstration consists of the minimum size MAQ20-BKPL4 backbone having 4 IO modules slots. Modules within the system cover the basic functionality of a data acquisition and control system, modules include: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;MAQ20-COM4 Communication Module Supporting RS485, Ethernet and USB connectivity &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;MAQ20-JTC 8 Channel J Type Thermocouple Input Module &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;MAQ20-VO 8 Channel Voltage Output Module &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;MAQ20-VDN 8 Channel Differential Voltage Input &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;MAQ20-DIOL 10 Channel (5 In 5 Out) Digital IO Module With Special Functions &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <property name="text">
+         <string>API imports</string>
+        </property>
+       </widget>
+      </item>
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QCheckBox" name="led_bar_control_checkbox">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;if &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;p_bool:&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.write_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;channel&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;data&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;10&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;else&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;:&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.write_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;channel&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;data&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=-&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;10&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="whatsThis">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LED Bar 3, 4 &amp;amp; LED Bar Control&lt;/span&gt;&lt;/p&gt;&lt;p&gt;LED Bars 3 &amp;amp; 4 can be operated via two methods controlled by the LED Bard Control input, wired to VO CH 1. When LED Bar Control is set to its lowest value (-10V) LED Bars 3 &amp;amp; 4 are controlled by VO CH 2 &amp;amp; 3 respectively. When the LED Bar Control is set to its highest value (+10V) LED Bar 3 &amp;amp; 4 are controlled by Motor Pot 1 &amp;amp; 2 respectively. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>LED BAR CONTROL</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="Line" name="line_7">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>INT. TC HEAT 1</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="tc_heat_1_spinbox">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.write_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;channel&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;data&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=p_double)&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#2b2b2b;&quot;&gt;tc_heat_1 = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.read_channel_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;channel&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Internal Heater Control 1 &amp;amp; 2 and Internal TC&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Two internal heating elements bonded to an internal thermocouple. When the heater controls are enabled using channels VO Channels 4 &amp;amp; 5 the temperature of the internal thermocouple is raised, the voltage at the heating elements can be read back on channels VDN 5 &amp;amp; 6. The internal thermocouple is wired to JTC Channel 6. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="decimals">
+           <number>1</number>
+          </property>
+          <property name="minimum">
+           <double>-10.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>10.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.500000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>INT. TC HEAT 2</string>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignTop">
+         <widget class="QDoubleSpinBox" name="tc_heat_2_spinbox">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.write_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;channel&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;data&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=p_double)&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#2b2b2b;&quot;&gt;tc_heat_2 = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.read_channel_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;channel&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Internal Heater Control 1 &amp;amp; 2 and Internal TC&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Two internal heating elements bonded to an internal thermocouple. When the heater controls are enabled using channels VO Channels 4 &amp;amp; 5 the temperature of the internal thermocouple is raised, the voltage at the heating elements can be read back on channels VDN 5 &amp;amp; 6. The internal thermocouple is wired to JTC Channel 6. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="decimals">
+           <number>1</number>
+          </property>
+          <property name="minimum">
+           <double>-10.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>10.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.500000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>INT_TC</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="int_tc_spinbox_indicator">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.int_tc_spinbox_indicator.setValue(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.jtc.read_channel_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;6&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;))&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Internal Heater Control 1 &amp;amp; 2 and Internal TC&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Two internal heating elements bonded to an internal thermocouple. When the heater controls are enabled using channels VO Channels 4 &amp;amp; 5 the temperature of the internal thermocouple is raised, the voltage at the heating elements can be read back on channels VDN 5 &amp;amp; 6. The internal thermocouple is wired to JTC Channel 6. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="buttonSymbols">
+           <enum>QAbstractSpinBox::NoButtons</enum>
+          </property>
+          <property name="minimum">
+           <double>-5000.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>1000.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_12">
+          <item alignment="Qt::AlignHCenter|Qt::AlignBottom">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>EXT. TC TOUCH</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="tc_touch_line_edit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>90</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#2b2b2b;&quot;&gt;module_channel = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;7&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;ext_temperature = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.jtc.read_channel_data(module_channel)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;External Touch TC&lt;/span&gt;&lt;/p&gt;&lt;p&gt;J type thermocouple with touch pad interfaced to JTC CH 7. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_16">
+          <property name="text">
+           <string>+FS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="freq_slider">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.write_special_function_5_frequency_generator(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;timer&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;frequency&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=p_int)&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#2b2b2b;&quot;&gt;frequency = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_register(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1105&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Frequency Output Control &amp;amp; LED Bar 1&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Frequency output control uses the DIOL modules special function for generating a square waveform up to 10 kHz, the DIOL output is wired to the input of a frequency to voltage converter which is used as an input to LED Bar 1 (red), this value can read back within the system on VDN CH 4. Each DIOL modules features 2 timers that can be used to provide timed special functions such as PWM output, Pulse Counter, Event Timer and more. In this case of the frequency generator used here timer 0 is used to produce the special function behaviour and is output on CH OUT 0. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">Slider::groove:vertical {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical {
+background: #fff;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:vertical {
+background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+stop: 0 rgb(255, 200, 200), stop: 1 rgb(255, 0, 40));
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:vertical:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:vertical:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}
+</string>
+          </property>
+          <property name="minimum">
+           <number>0</number>
+          </property>
+          <property name="maximum">
+           <number>10000</number>
+          </property>
+          <property name="singleStep">
+           <number>500</number>
+          </property>
+          <property name="pageStep">
+           <number>500</number>
+          </property>
+          <property name="sliderPosition">
+           <number>1000</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="tickPosition">
+           <enum>QSlider::TicksBelow</enum>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_15">
+          <property name="text">
+           <string>0</string>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_3">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>FREQ</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="freq_spinbox">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#2b2b2b;&quot;&gt;frequency = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_register(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1105&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.freq_spinbox.setValue(frequency/&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1000.0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="buttonSymbols">
+           <enum>QAbstractSpinBox::NoButtons</enum>
+          </property>
+          <property name="keyboardTracking">
+           <bool>true</bool>
+          </property>
+          <property name="showGroupSeparator" stdset="0">
+           <bool>false</bool>
+          </property>
+          <property name="decimals">
+           <number>3</number>
+          </property>
+          <property name="maximum">
+           <double>11.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>+FS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="vout1_slider">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#2b2b2b;&quot;&gt;voltages = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vout1_slider.setValue(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#8888c6;&quot;&gt;round&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(voltages[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;]))&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LED Bar 2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;LED Bar 2 is controlled directly by VO CH 0. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">Slider::groove:vertical {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical {
+background: #fff;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:vertical {
+background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+stop: 0 rgb(255, 220, 220), stop: 1 rgb(255, 170, 0));
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:vertical:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:vertical:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}
+
+</string>
+          </property>
+          <property name="minimum">
+           <number>-10</number>
+          </property>
+          <property name="maximum">
+           <number>10</number>
+          </property>
+          <property name="singleStep">
+           <number>1</number>
+          </property>
+          <property name="pageStep">
+           <number>1</number>
+          </property>
+          <property name="tracking">
+           <bool>true</bool>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="invertedAppearance">
+           <bool>false</bool>
+          </property>
+          <property name="tickPosition">
+           <enum>QSlider::TicksBelow</enum>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_20">
+          <property name="text">
+           <string>-FS</string>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_4">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>VOUT1</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="vout1_spinbox">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#2b2b2b;&quot;&gt;voltages = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vout1_spinbox.setValue(voltages[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;])&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="buttonSymbols">
+           <enum>QAbstractSpinBox::NoButtons</enum>
+          </property>
+          <property name="minimum">
+           <double>-11.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>11.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <item>
+           <widget class="QCheckBox" name="sw1">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;_update_switches&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;):&lt;br/&gt;    values = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SW1-5 Digital Inputs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Switch inputs use TTL logic levels and are active low, LEDs light when the input to the MAQ20 DIOL modules is low. Switches are interfaced to DIOL CH 0-4. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>SW1</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="sw1_slider">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>1677215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;_update_switches&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;):&lt;br/&gt;    values = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SW1-5 Digital Inputs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Switch inputs use TTL logic levels and are active low, LEDs light when the input to the MAQ20 DIOL modules is low. Switches are interfaced to DIOL CH 0-4. &lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
+    stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #bbf, stop: 1 #55f);
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+background: #aaa;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+            </property>
+            <property name="maximum">
+             <number>1</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QCheckBox" name="sw2">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;_update_switches&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;):&lt;br/&gt;    values = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SW1-5 Digital Inputs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Switch inputs use TTL logic levels and are active low, LEDs light when the input to the MAQ20 DIOL modules is low. Switches are interfaced to DIOL CH 0-4. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>SW2</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="sw2_slider">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;_update_switches&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;):&lt;br/&gt;    values = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SW1-5 Digital Inputs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Switch inputs use TTL logic levels and are active low, LEDs light when the input to the MAQ20 DIOL modules is low. Switches are interfaced to DIOL CH 0-4. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
+    stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #bbf, stop: 1 #55f);
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+background: #aaa;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+            </property>
+            <property name="maximum">
+             <number>1</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item>
+           <widget class="QCheckBox" name="sw3">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;_update_switches&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;):&lt;br/&gt;    values = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SW1-5 Digital Inputs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Switch inputs use TTL logic levels and are active low, LEDs light when the input to the MAQ20 DIOL modules is low. Switches are interfaced to DIOL CH 0-4. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>SW3</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="sw3_slider">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;_update_switches&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;):&lt;br/&gt;    values = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SW1-5 Digital Inputs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Switch inputs use TTL logic levels and are active low, LEDs light when the input to the MAQ20 DIOL modules is low. Switches are interfaced to DIOL CH 0-4. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
+    stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #bbf, stop: 1 #55f);
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+background: #aaa;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+            </property>
+            <property name="maximum">
+             <number>1</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QCheckBox" name="sw4">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;_update_switches&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;):&lt;br/&gt;    values = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SW1-5 Digital Inputs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Switch inputs use TTL logic levels and are active low, LEDs light when the input to the MAQ20 DIOL modules is low. Switches are interfaced to DIOL CH 0-4. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>SW4</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="sw4_slider">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;_update_switches&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;):&lt;br/&gt;    values = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SW1-5 Digital Inputs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Switch inputs use TTL logic levels and are active low, LEDs light when the input to the MAQ20 DIOL modules is low. Switches are interfaced to DIOL CH 0-4. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
+    stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #bbf, stop: 1 #55f);
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+background: #aaa;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+            </property>
+            <property name="maximum">
+             <number>1</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_10">
+          <item>
+           <widget class="QCheckBox" name="sw5">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;_update_switches&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;):&lt;br/&gt;    values = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SW1-5 Digital Inputs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Switch inputs use TTL logic levels and are active low, LEDs light when the input to the MAQ20 DIOL modules is low. Switches are interfaced to DIOL CH 0-4. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>SW5</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="sw5_slider">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;_update_switches&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;):&lt;br/&gt;    values = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;5&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw1_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw2_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw3_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw4_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5.setChecked(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.sw5_slider.setValue(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;] ^ &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="whatsThis">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;SW1-5 Digital Inputs&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Switch inputs use TTL logic levels and are active low, LEDs light when the input to the MAQ20 DIOL modules is low. Switches are interfaced to DIOL CH 0-4. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
+    stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0 #bbf, stop: 1 #55f);
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+background: #aaa;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+            </property>
+            <property name="maximum">
+             <number>1</number>
+            </property>
+            <property name="pageStep">
+             <number>1</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_4">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_18">
+          <property name="text">
+           <string>+FS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="vout2_slider">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;vout2_slider_val&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;p_int):&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;if not &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.led_bar_control_checkbox.isChecked():&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.led_bar_control_checkbox.toggle()&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;try&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;:&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.write_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;channel&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;data&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=p_int)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LED Bar 3, 4 &amp;amp; LED Bar Control&lt;/span&gt;&lt;/p&gt;&lt;p&gt;LED Bars 3 &amp;amp; 4 can be operated via two methods controlled by the LED Bard Control input, wired to VO CH 1. When LED Bar Control is set to its lowest value (-10V) LED Bars 3 &amp;amp; 4 are controlled by VO CH 2 &amp;amp; 3 respectively. When the LED Bar Control is set to its highest value (+10V) LED Bar 3 &amp;amp; 4 are controlled by Motor Pot 1 &amp;amp; 2 respectively. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">Slider::groove:vertical {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical {
+background: #fff;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:vertical {
+background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+stop: 0 rgb(180, 220, 220), stop: 1 rgb(85, 255, 0));
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:vertical:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:vertical:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}
+
+</string>
+          </property>
+          <property name="minimum">
+           <number>-10</number>
+          </property>
+          <property name="maximum">
+           <number>10</number>
+          </property>
+          <property name="pageStep">
+           <number>1</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="tickPosition">
+           <enum>QSlider::TicksBelow</enum>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>-FS</string>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_5">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>VOUT2</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="vout2_spinbox">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#2b2b2b;&quot;&gt;voltages = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vout2_spinbox.setValue(voltages[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;])&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="buttonSymbols">
+           <enum>QAbstractSpinBox::NoButtons</enum>
+          </property>
+          <property name="minimum">
+           <double>-11.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>11.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_5">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_19">
+          <property name="text">
+           <string>+FS</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSlider" name="vout3_slider">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;def &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#a9b7c6;&quot;&gt;vout3_slider_val&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;p_int):&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;if not &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.led_bar_control_checkbox.isChecked():&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.led_bar_control_checkbox.toggle()&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; font-weight:600; color:#cc7832;&quot;&gt;try&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;:&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.write_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;channel&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;data&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=p_int)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;LED Bar 3, 4 &amp;amp; LED Bar Control&lt;/span&gt;&lt;/p&gt;&lt;p&gt;LED Bars 3 &amp;amp; 4 can be operated via two methods controlled by the LED Bard Control input, wired to VO CH 1. When LED Bar Control is set to its lowest value (-10V) LED Bars 3 &amp;amp; 4 are controlled by VO CH 2 &amp;amp; 3 respectively. When the LED Bar Control is set to its highest value (+10V) LED Bar 3 &amp;amp; 4 are controlled by Motor Pot 1 &amp;amp; 2 respectively. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">Slider::groove:vertical {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical {
+background: #fff;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:vertical {
+background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+stop: 0 #bbf, stop: 1 #55f);
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:vertical:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:vertical:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}
+
+</string>
+          </property>
+          <property name="minimum">
+           <number>-10</number>
+          </property>
+          <property name="maximum">
+           <number>10</number>
+          </property>
+          <property name="pageStep">
+           <number>1</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="invertedAppearance">
+           <bool>false</bool>
+          </property>
+          <property name="tickPosition">
+           <enum>QSlider::TicksBelow</enum>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_22">
+          <property name="text">
+           <string>-FS</string>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter">
+         <widget class="QLabel" name="label_6">
+          <property name="font">
+           <font>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>VOUT3</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDoubleSpinBox" name="vout3_spinbox">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#2b2b2b;&quot;&gt;voltages = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;4&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;).&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vout3_spinbox.setValue(voltages[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;])&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="buttonSymbols">
+           <enum>QAbstractSpinBox::NoButtons</enum>
+          </property>
+          <property name="minimum">
+           <double>-11.000000000000000</double>
+          </property>
+          <property name="maximum">
+           <double>11.000000000000000</double>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="Line" name="line_6">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QDial" name="motor_pot_1">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#2b2b2b;&quot;&gt;values = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vdn.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;start_channel&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;number_of_channels&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#344134;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.motor_pot_1.setValue(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#8888c6;&quot;&gt;round&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;]*(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;20.0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;/&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3.3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)))&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Motor Pots 1 &amp;amp; 2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Rotation of Motor Pots 1 &amp;amp; 2 is controlled by CH 1-4 of the DIOL module outputs. Each pot has a forward and reverse control and is interlocked in logic to provide the truth table show below: &lt;/p&gt;&lt;p/&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;table border=&quot;1&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td width=&quot;57&quot; bgcolor=&quot;#d9d9d9&quot; style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Action&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td width=&quot;66&quot; bgcolor=&quot;#d9d9d9&quot; style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;OUT 1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td width=&quot;68&quot; bgcolor=&quot;#d9d9d9&quot; style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;OUT 2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Stop&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Forward&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Reverse&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Stop&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=&quot;3&quot; style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Figure 3: Motor Pot Truth Table&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;p/&gt;&lt;p&gt;When the LED Bar Control is set high (+10V) motor pot position are displayed on LED Bar 3 &amp;amp; 4 on the process simulator panel. Each motor pot is wired to two inputs of the VDN module, the first inputs is full scale 0 to +10V, the second inputs level shifted to 0 to +3V. Finally the rotational speed of each motor pot can be modified using VO Channels 6 &amp;amp; 7, setting the output to &amp;lt;=0 means the motor pots will not rotate when the digital control signals are asserted. Setting the output to &amp;gt;0 will increase the rotation speed the maximum value is +10V this will rotate the motor pots at their maximum rate. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="maximum">
+           <number>20</number>
+          </property>
+          <property name="pageStep">
+           <number>1</number>
+          </property>
+          <property name="notchesVisible">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+         <widget class="QLabel" name="label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>7</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>MOTOR POT 1</string>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDial" name="motor_pot_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#40332b;&quot;&gt;values&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt; = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vdn.read_data(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;start_channel&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;number_of_channels&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6; background-color:#344134;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.motor_pot_2.setValue(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#8888c6;&quot;&gt;round&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;(values[&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;1&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;]*(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;20.0&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;/&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#6897bb;&quot;&gt;3.3&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)))&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="whatsThis">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Motor Pots 1 &amp;amp; 2&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Rotation of Motor Pots 1 &amp;amp; 2 is controlled by CH 1-4 of the DIOL module outputs. Each pot has a forward and reverse control and is interlocked in logic to provide the truth table show below: &lt;/p&gt;&lt;p/&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;table border=&quot;1&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px;&quot; align=&quot;center&quot; cellspacing=&quot;0&quot; cellpadding=&quot;0&quot;&gt;&lt;tr&gt;&lt;td width=&quot;57&quot; bgcolor=&quot;#d9d9d9&quot; style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Action&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td width=&quot;66&quot; bgcolor=&quot;#d9d9d9&quot; style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;OUT 1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td width=&quot;68&quot; bgcolor=&quot;#d9d9d9&quot; style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;OUT 2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Stop&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Forward&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Reverse&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Stop&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;td style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=&quot;3&quot; style=&quot; vertical-align:top; padding-left:0; padding-right:0; padding-top:0; padding-bottom:0;&quot;&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Figure 3: Motor Pot Truth Table&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;p/&gt;&lt;p&gt;When the LED Bar Control is set high (+10V) motor pot position are displayed on LED Bar 3 &amp;amp; 4 on the process simulator panel. Each motor pot is wired to two inputs of the VDN module, the first inputs is full scale 0 to +10V, the second inputs level shifted to 0 to +3V. Finally the rotational speed of each motor pot can be modified using VO Channels 6 &amp;amp; 7, setting the output to &amp;lt;=0 means the motor pots will not rotate when the digital control signals are asserted. Setting the output to &amp;gt;0 will increase the rotation speed the maximum value is +10V this will rotate the motor pots at their maximum rate. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="maximum">
+           <number>20</number>
+          </property>
+          <property name="pageStep">
+           <number>1</number>
+          </property>
+          <property name="notchesVisible">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignHCenter|Qt::AlignTop">
+         <widget class="QLabel" name="label_2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>7</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>MOTOR POT 2</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item alignment="Qt::AlignHCenter">
+       <widget class="QLabel" name="label_8">
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="whatsThis">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;MAQ20 Process Simulator Demonstration System&lt;/span&gt;&lt;span style=&quot; font-size:12pt;&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;/&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;The MAQ20 Process Simulator Demonstration System was developed by Dataforth in order to showcase the operation of the MAQ20 system. The demonstration consists of the minimum size MAQ20-BKPL4 backbone having 4 IO modules slots. Modules within the system cover the basic functionality of a data acquisition and control system, modules include: &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;MAQ20-COM4 Communication Module Supporting RS485, Ethernet and USB connectivity &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;MAQ20-JTC 8 Channel J Type Thermocouple Input Module &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;MAQ20-VO 8 Channel Voltage Output Module &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;MAQ20-VDN 8 Channel Differential Voltage Input &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:400;&quot;&gt;MAQ20-DIOL 10 Channel (5 In 5 Out) Digital IO Module With Special Functions &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>PROCESS SIMULATOR</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="Line" name="line_8">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_11">
+      <item>
+       <widget class="QLabel" name="label_12">
+        <property name="text">
+         <string>IP Address:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="ip_address_line">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.maq20 = MAQ20(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;ip_address&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.ip_address_line.displayText()&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;port&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.port_spinbox.value())&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>192.168.128.100</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>Port</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="port_spinbox">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.maq20 = MAQ20(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;ip_address&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.ip_address_line.displayText()&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;port&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.port_spinbox.value())&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>1000</number>
+        </property>
+        <property name="value">
+         <number>502</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_14">
+        <property name="text">
+         <string>Status:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="status_line">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>No Connection</string>
+        </property>
+        <property name="frame">
+         <bool>false</bool>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSlider" name="connection_switch">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QSlider::groove:horizontal {
+border: 1px solid #bbb;
+background: white;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal {
+background: qlineargradient(x1: 0, y1: 0,    x2: 0, y2: 1,
+    stop: 0 #66e, stop: 1 #bbf);
+background: qlineargradient(x1: 0, y1: 0.2, x2: 1, y2: 1,
+    stop: 0  rgb(200,255,200), stop: 1 rgb(0,255,0));
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:horizontal {
+background: #aaa;
+border: 1px solid #777;
+height: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+width: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:horizontal:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+    stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:horizontal:disabled {
+background:  rgb(0,255,0);
+border-color: #999;
+}
+
+QSlider::add-page:horizontal:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:horizontal:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+        </property>
+        <property name="maximum">
+         <number>1</number>
+        </property>
+        <property name="pageStep">
+         <number>1</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_12">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="connect_button">
+        <property name="toolTip">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;pre style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; background-color:#2b2b2b;&quot;&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.maq20 = MAQ20(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;ip_address&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.ip_address_line.displayText()&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#cc7832;&quot;&gt;, &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#aa4926;&quot;&gt;port&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.port_spinbox.value())&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.jtc = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.maq20.find(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#008080;&quot;&gt;&amp;quot;JTC&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vdn = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.maq20.find(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#008080;&quot;&gt;&amp;quot;VDN&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;vo = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.maq20.find(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#008080;&quot;&gt;&amp;quot;VO&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;dio = &lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.maq20.find(&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#008080;&quot;&gt;&amp;quot;DIOL&amp;quot;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.vo = outputmodule.OutputModule(vo)&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#94558d;&quot;&gt;self&lt;/span&gt;&lt;span style=&quot; font-family:'Courier New'; font-size:12pt; color:#a9b7c6;&quot;&gt;.diol = diol.DIOL(dio)&lt;/span&gt;&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="whatsThis">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;MAQ20 Process Simulator Demonstration System&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;/&gt;&lt;/p&gt;&lt;p&gt;The MAQ20 Process Simulator Demonstration System was developed by Dataforth in order to showcase the operation of the MAQ20 system. The demonstration consists of the minimum size MAQ20-BKPL4 backbone having 4 IO modules slots. Modules within the system cover the basic functionality of a data acquisition and control system, modules include: &lt;/p&gt;&lt;p/&gt;&lt;p&gt;MAQ20-COM4 Communication Module Supporting RS485, Ethernet and USB connectivity &lt;/p&gt;&lt;p&gt;MAQ20-JTC 8 Channel J Type Thermocouple Input Module &lt;/p&gt;&lt;p&gt;MAQ20-VO 8 Channel Voltage Output Module &lt;/p&gt;&lt;p&gt;MAQ20-VDN 8 Channel Differential Voltage Input &lt;/p&gt;&lt;p&gt;MAQ20-DIOL 10 Channel (5 In 5 Out) Digital IO Module With Special Functions &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+        <property name="text">
+         <string>Connect</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>910</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionConnect"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Connect</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>motor_pot_2</tabstop>
+  <tabstop>motor_pot_1</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>331</x>
+     <y>197</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
