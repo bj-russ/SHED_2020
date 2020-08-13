@@ -13,12 +13,14 @@ from simple_pid import PID
 import xlrd
 import serial
 import numpy as np
-import matplotlib
 import matplotlib.pyplot as plt
-
-matplotlib.use("TkAgg") #specify as backend use as "TkAgg"
-from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, NavigationToolbar2Tk) # allows use in canvas and imports functional toolbar for plots
-from matplotlib.figure import Figure # import temporary figure to update
+import matplotlib.animation as animation
+from matplotlib import style
+from matplotlib.backends.backend_tkagg import (
+    FigureCanvasTkAgg, NavigationToolbar2Tk)
+# Implement the default Matplotlib key bindings.
+from matplotlib.backend_bases import key_press_handler
+from matplotlib.figure import Figure
 from pandas import *
 import csv
 from datetime import datetime
@@ -257,6 +259,7 @@ def save_for_plot():
                 pid_vout[1],
                 pump_io[0],
                 pump_io[1], pump_io[2], pump_io[3], pump_io[4], pump_io[5], pump_io[6], pump_io[7], flowrate[0],
+
                 flowrate[1],
                 flowrate[2], flowrate[3], flowrate[4], flowrate[5], flowrate[6], flowrate[7], T[0], T[1], T[2],
                 T[3], T[4],
@@ -736,7 +739,7 @@ def background_communication():
         for i in range (0,8):
             T[i] = random.uniform(10,65)
             AI[i] = random.uniform(0.5,.6)
-            flowrate[i] = random.uniform(0.15,10.6)
+            flowrate[i] = random.uniform(4.5,5.5)
     if demo == 1:
         update_unhooked()
     if demo == 0:
@@ -802,6 +805,7 @@ def GUI():
 
     window = tk.Tk()
     window.title('SHED Auxiliary Control')
+
     #window.iconbitmap('CAicon.ico')
     window.maxsize(XX, YY)
     window.minsize(XX,YY)
@@ -819,12 +823,12 @@ def GUI():
 
     application_window = tab1
     frame1_tab1 = ttk.LabelFrame(application_window, text="Water Flow Monitoring")
-    frame1_tab1.grid(row=0,column=0,padx=50, pady=10)
+    frame1_tab1.grid(row=0,column=0,padx=10, pady=10)
     frame2_tab1 = ttk.Frame(application_window)
     frame2_tab1.grid(row=0,column=2, rowspan = 5, sticky=N)
 
 ########################################################################################################################
-    aplication_window = frame1_tab1
+    application_window = frame1_tab1
     lf0 = ttk.LabelFrame(application_window, text="Main Loop")  # , width=100,height=100)
     lf0.grid(row=0, column=0, padx=10, pady=10)  # ,rowspan=5, columnspan=4)
     lf1 = ttk.LabelFrame(application_window, text="SHED1 Loop")  # , width=100,height=100)
@@ -969,7 +973,7 @@ def GUI():
     lf5 = ttk.LabelFrame(application_window, text="Alarms")
     lf5.grid(row=1,column=1, padx = 30)
     plot_frame = ttk.LabelFrame(application_window, text="Shed Temperature History")
-    plot_frame.grid(row=2,column=1,padx = 30, pady=3, columnspan = 2)
+    plot_frame.grid(row=2,column=0,padx = 30, pady=3, columnspan = 4, rowspan = 4)
 
     def Exhaust_tab1():
         def text_update(text_to_update, value_to_update):
@@ -1072,26 +1076,67 @@ def GUI():
     Alarm_tab1()
 
     def plots_tab1():
+        application_window = plot_frame
+        def plot_try1():
+            fig_x = 6
+            fig_y = 2
+            fig_dpi = 80
+            x1_val = [] # plot_dict.get("Entry Time")
+            y1_val = [] # plot_dict.get("SHED2 Temp")
+
+            y2_val = [] # plot_dict.get("SHED3 Temp")
+            fig = plt.figure(figsize=(fig_x, fig_y), dpi=fig_dpi)
+            ax1 = fig.add_subplot(111)
+            line1, = ax1.plot(x1_val,y1_val)
+            line2, = ax1.plot(x1_val,y2_val)
+            ax1.legend(['SHED2', 'SHED3'])
+
+            def animate():
+
+                x1_val = plot_dict.get("Entry Time")
+                y1_val = plot_dict.get("SHED2 Temp")
+                y2_val = plot_dict.get("SHED3 Temp")
+                line1.set_data(x1_val, y1_val)
+                line2.set_data(x1_val, y2_val)
+                ax1.set_xlim(range(x1_val))
+                print(x1_val)
+
+            plotcanvas = FigureCanvasTkAgg(fig,application_window)
+            plotcanvas.get_tk_widget().grid(column=1, row=1)
+            ani = animation.FuncAnimation(fig,animate, interval = 1000, blit=False)
+
+
+
+
+            #fig2 = Figure(figsize=(fig_x, fig_y), dpi=fig_dpi)
+            #canvas = FigureCanvasTkAgg(fig, application_window)  # A tk.DrawingArea.
+            #canvas.draw()
+            #canvas.get_tk_widget().pack()#side=tk.TOP, fill=tk.BOTH, expand=1)
+
+            #toolbar = NavigationToolbar2Tk(canvas, application_window)
+            #toolbar.update()
+            #canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+
         def plot1_():
             application_window = plot_frame
             Refresh = Label(application_window, text = 'refresh')
             Refresh.grid(row=10,column=10)
             try:
-                plot1 = Figure(figsize=(10, 2))
-                ax1 = plot1.add_subplot(111)
+                plot1 = plt.figure(figsize=(100, 20))
                 x_val = plot_dict.get("Entry Time")
                 y_val = plot_dict.get("SHED2 Temp")
                 if x_val != None:
                     print(x_val, y_val)
-                ax1.plot(range(len(x_val)),y_val)
+                plt.plot(range(len(x_val)),y_val)
                 canvas = FigureCanvasTkAgg(plot1, application_window)
                 canvas.show()
                 canvas.get_tk_widget().pack.grid(row=11,column=10)
             except:
                 pass
-            Refresh.after(10000,plot1_)
+            Refresh.after(1000,plot1_)
 
-        plot1_()
+        #plot1_()
+        plot_try1()
     plots_tab1()
 
 ########################################################################################################################
@@ -1459,5 +1504,6 @@ GUI_thread = threading.Thread(target=GUI)
 
 
 #background_thread.start()
-GUI_thread.start()
+#GUI_thread.start()
+GUI()
 
