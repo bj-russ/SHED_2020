@@ -278,9 +278,10 @@ def save_for_plot():
     else:
         for i in range(0, len(saveline)):
             plot_dict[Header_list[i]].append(saveline[i])
-            if len(plot_dict[Header_list[i]])> frame_length :        # if dict reaches max length, delete first value.
-                plot_dict[Header_list[i]] = plot_dict[Header_list[i]][1:]
-    #print(plot_dict)
+            plot_dict[Header_list[i]] = plot_dict[Header_list[i]][-frame_length:]
+            #if len(plot_dict[Header_list[i]])> frame_length :        # if dict reaches max length, delete first value.
+            #    plot_dict[Header_list[i]] = plot_dict[Header_list[i]][1:]
+    print(plot_dict)
 
 ########################################################################################################################
 #                               SET UP FOR save_to_csv
@@ -1078,32 +1079,46 @@ def GUI():
     def plots_tab1():
         application_window = plot_frame
         def plot_try1():
+            application_window = plot_frame
             fig_x = 6
-            fig_y = 2
+            fig_y = 4
             fig_dpi = 80
             x1_val = [] # plot_dict.get("Entry Time")
             y1_val = [] # plot_dict.get("SHED2 Temp")
-
+            yar = []
+            xar = []
             y2_val = [] # plot_dict.get("SHED3 Temp")
             fig = plt.figure(figsize=(fig_x, fig_y), dpi=fig_dpi)
-            ax1 = fig.add_subplot(111)
+            ax1 = fig.add_subplot(1,1,1)
+            ax1.set_ylim(0, 100)
+            ax1.set_xlim(0, 100)
+            line, = ax1.plot(xar, yar, marker='o')
             line1, = ax1.plot(x1_val,y1_val)
             line2, = ax1.plot(x1_val,y2_val)
             ax1.legend(['SHED2', 'SHED3'])
 
-            def animate():
+            def animate(i):
+                x1_val.append(plot_dict.get("Entry Time"))
+                y1_val.append(plot_dict.get("SHED2 Temp"))
+                y2_val.append(plot_dict.get("SHED3 Temp"))
+                x1_val = x1_val[-frame_length:]
+                y1_val = y1_val[-frame_length:]
+                y2_val = y2_val[-frame_length:]
+                yar.append(99 - i)
+                xar.append(i)
+                fig.plot(x1_val,y1_val)
+                #line.set_data(xar, yar)
+                #ax1.set_xlim(0, i + 1)
+                #if x1_val != None:
+                #    line1.set_data(x1_val, y1_val)
+                #    line2.set_data(x1_val, y2_val)
+                #    #ax1.set_ylim(min(y1_val)-5,max(y1_val)+5)
+                #    ax1.set_xlim(0,len(x1_val))
+                print("Plot Should Be updating!")
 
-                x1_val = plot_dict.get("Entry Time")
-                y1_val = plot_dict.get("SHED2 Temp")
-                y2_val = plot_dict.get("SHED3 Temp")
-                line1.set_data(x1_val, y1_val)
-                line2.set_data(x1_val, y2_val)
-                ax1.set_xlim(range(x1_val))
-                print(x1_val)
-
-            plotcanvas = FigureCanvasTkAgg(fig,application_window)
+            plotcanvas = FigureCanvasTkAgg(fig, plot_frame)
             plotcanvas.get_tk_widget().grid(column=1, row=1)
-            ani = animation.FuncAnimation(fig,animate, interval = 1000, blit=False)
+            ani = animation.FuncAnimation(fig, animate, interval=1, blit=False)
 
 
 
@@ -1137,7 +1152,7 @@ def GUI():
 
         #plot1_()
         plot_try1()
-    plots_tab1()
+    #plots_tab1()
 
 ########################################################################################################################
     application_window = tab2
@@ -1488,6 +1503,7 @@ def GUI():
             exit_case = True
             sys.exit()
     window.protocol('WM_DELETE_WINDOW',stop_program)
+    plots_tab1()
     window.mainloop()
 
 if demo ==0:
