@@ -24,7 +24,6 @@ from matplotlib.figure import Figure
 from pandas import *
 import csv
 from datetime import datetime
-from GUI_TEXT_UPDATE import *
 from apscheduler.schedulers.background import BackgroundScheduler
 import random
 ########################################################################################################################
