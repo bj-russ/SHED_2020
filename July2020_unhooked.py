@@ -256,14 +256,10 @@ def save_for_plot():
 
     saveline = [entry_time, set_temp[0], shed_temp_value[0], pid_vout[0], set_temp[1], shed_temp_value[1],
                 pid_vout[1],
-                pump_io[0],
-                pump_io[1], pump_io[2], pump_io[3], pump_io[4], pump_io[5], pump_io[6], pump_io[7], flowrate[0],
-
-                flowrate[1],
-                flowrate[2], flowrate[3], flowrate[4], flowrate[5], flowrate[6], flowrate[7], T[0], T[1], T[2],
-                T[3], T[4],
-                T[5], T[6], T[7], valve_V[0], valve_V[1], valve_V[2],
-                valve_V[3], valve_V[4], valve_V[5], valve_V[6], valve_V[7]]
+                pump_io[0], pump_io[1], pump_io[2], pump_io[3], pump_io[4], pump_io[5], pump_io[6], pump_io[7],
+                flowrate[0], flowrate[1], flowrate[2], flowrate[3], flowrate[4], flowrate[5], flowrate[6], flowrate[7],
+                T[0], T[1], T[2], T[3], T[4], T[5], T[6], T[7],
+                valve_V[0], valve_V[1], valve_V[2], valve_V[3], valve_V[4], valve_V[5], valve_V[6], valve_V[7]]
 
     saveline_list =[]
     for i in range (0,len(saveline)):
@@ -1165,13 +1161,6 @@ def GUI():
 
         for j in range(0, 8):
             pump_text[j].configure(text=str(pump_io[j]))
-        # Check Flowrate and Temperatures
-
-        # Temp SHED1 Cold <15 degC, Main Cold <15 degC (FOR MORE THAN 5 MINS)
-        # Flowrate SHED1 COLD >____________ PROGRESS BAR
-        # Flowrate SHED1 COLD < MAIN COLD
-        # Alarm = False
-        # If Above is complete then Ready to run signal can be sent
 
     def start_btn1_stop():
         global SHED1
