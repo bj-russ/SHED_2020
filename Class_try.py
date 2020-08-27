@@ -344,7 +344,7 @@ class SHEDoperation(tk.Frame):
         start_btn1 = Button(self, width=25, font =LARGE_FONT)
         start_btn2 = Button(self, width=24, font =LARGE_FONT)
         start_btn3 = Button(self, width=24, font =LARGE_FONT)
-        manual_btn = Button(self, width=25, font =LARGE_FONT)
+        manual_btn = Button(self, width=25, font =LARGE_FONT, text = "Enter Manual Mode")
 
         if not SHED1:
             start_btn1.configure(text="SHED1: Request to Start", command=SHED_btn1_clicked, bg = 'red', font =LARGE_FONT)
@@ -380,18 +380,15 @@ class SHEDoperation(tk.Frame):
 
 class FlowDisplay(tk.Frame):
     def __init__(self, parent, controller):
-
-        tk.Frame.__init__(self, parent)
-        mainloop_tab1 = ttk.LabelFrame(self,text = "Main Loop")
-        mainloop_tab1.grid(row=0, column=0, padx=10, pady=10)
-        mainframe = FlowMain(mainloop_tab1, self)
+        ttk.LabelFrame.__init__(self, parent, text = "Main Loop")
+        mainframe = FlowMain(parent, self)
         mainframe.pack()
 
 def flow_calculate(flow_text, n):
     def flow_update():
         txt = ''
         # for n in range(0,8):
-        flow_text[n].configure(text="Flowrate \n" + str(round(flowrate[n], 2)) + " GPM")
+        flow_text[n].configure(text="Flowrate \n" + str(round(flowrate_value[n], 2)) + " GPM")
         #print(flowrate[n])
         flow_text[n].after(ref_rate, flow_update)
     flow_update()
@@ -431,7 +428,7 @@ def flow_temp_status(temp_text,n):
 def valve_position(valve_text,n):
     def valve_text_update():
         txt=""
-        txt="Valve Pos." + str(n+1) + "\n" + str(round(100*valve_V[n]/10,2)) +"%"
+        txt="Valve Pos." + str(n+1) + "\n" + str(round(100*valve_pos[n]/10,2)) +"%"
         valve_text[n].configure(text=txt)
         valve_text[n].after(ref_rate, valve_text_update)
     valve_text_update()
@@ -440,7 +437,7 @@ def valve_position(valve_text,n):
 class FlowMain(tk.Frame):
 
     def __init__(self,parent,controller):
-        tk.Frame(self,parent,controller)
+        ttk.LabelFrame.__init__(self, text = "Main Loop")
         hotLabel0 = Label(self, text="Hot", font=("Bold", 10), padx=9)
         coldLabel0 = Label(self, text="Cold", font=("Bold", 10), padx=9)
         hotLabel0.grid(row=2, column=0)
@@ -474,14 +471,15 @@ class FlowMain(tk.Frame):
 class MainApplication(tk.Tk):
 
     def __init__(self):
-        # tk.Tk.__init__(self)  # Was causing extra frame to pop up
+        tk.Tk.__init__(self)  # Was causing extra frame to pop up
 
-        self.root = tk.Tk()  # create instance of Tk
+        self.root = tk.Frame()  # create instance of Tk
+        self.root.pack()
         self.start_frame = ttk.Frame(self.root)
         self.start_frame.pack(pady = 10)
         self.start_btns = SHEDoperation(self.start_frame,self)
         self.start_btns.pack()
-        self.root.title("SHED Auxiliary Control V2")
+        #self.root.title("SHED Auxiliary Control V2")
         self.tabControl = ttk.Notebook(self.root)
         self.tab1 = ttk.Frame(self.tabControl)
         self.tab2 = ttk.Frame(self.tabControl)
@@ -492,16 +490,16 @@ class MainApplication(tk.Tk):
         self.tabControl.pack(expand = True, fill = 'both')
 
         self.frame_tab1 = Tab1(self.tab1, self)
-        self.frame_tab1.pack()
+        self.frame_tab1.grid(row = 0, column = 0, sticky = "nsew")
 
         self.frame_tab2 = Tab2(self.tab2, self)
-        self.frame_tab2.pack()
+        self.frame_tab2.grid(row = 0, column = 0, sticky = "nsew")
 
         self.frame_tab3 = Tab3(self.tab3, self)
-        self.frame_tab3.pack()
+        self.frame_tab3.grid(row = 0, column = 0, sticky = "nsew")
 
-        self.root.geometry("1024x600")
-        self.root.protocol('WM_DELETE_WINDOW', stop_program)
+        self.geometry("1024x600")
+        self.protocol('WM_DELETE_WINDOW', stop_program)
         self.root.mainloop()
 
 
@@ -509,13 +507,25 @@ class Tab1(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
-        flow_frame = ttk.Frame(self)
-        flow_frame.grid(column = 0, row = 0, padx = 10, pady = 10)
-        flow_display = FlowDisplay(flow_frame)
-        flow_display.pack()
-
-        lbl1 = tk.Label(self, text="Tab1", font=LARGE_FONT)
-        lbl1.grid(column =1, row=0)
+        flow_frame = ttk.LabelFrame(self, text = "Flow Monitoring")
+        flow_frame.grid(column = 0, row = 0, padx = 10, pady = 10, )
+        #mainflow = FlowDisplay(self, self)
+        #mainflow.pack()
+        lbl1= tk.Label(flow_frame, text="Tab1", font=LARGE_FONT)
+        lbl1.grid(column =1, row=0, sticky = 'WE')
+        shed_frame = ttk.LabelFrame(self, text = "SHED status")
+        shed_frame.grid(column = 0,row = 1)
+        SHED1_lbl = tk.Label(shed_frame, text = SHED_req_to_start)
+        SHED1_lbl.grid(column = 0, row = 1)
+        def update_SHED_lbl(SHED_lbl):
+            def update():
+                SHED_lbl.configure(text = SHED_req_to_start)
+                SHED_lbl.after(10, update)
+            update()
+        update_SHED_lbl(SHED1_lbl)
+        #main_fr
+        #label_label1 = tk.Label(self, text = "Where will this label go?!")
+        #label_label1.grid(column = 1, row = 0)
 
 
 class Tab2(tk.Frame):
@@ -527,7 +537,21 @@ class Tab2(tk.Frame):
         #start_btns = SHEDoperation(start_frame,self)
         #start_btns.pack()
         lbl2 = tk.Label(self, text="Tab2")
-        lbl2.grid(column = 0, row = 1 )
+        lbl2.grid(column = 0, row = 0 )
+
+        #lbl1 = tk.Label(self, text="Tab1", font=LARGE_FONT)
+        #lbl1.grid(column=1, row=0, sticky='WE')
+        SHED1_lbl = tk.Label(self, text=SHED_req_to_start)
+        SHED1_lbl.grid(column=0, row=1)
+
+        def update_SHED_lbl(SHED_lbl):
+            def update():
+                SHED_lbl.configure(text=SHED_req_to_start)
+                SHED_lbl.after(10, update)
+
+            update()
+
+        update_SHED_lbl(SHED1_lbl)
 
 
 class Tab3(tk.Frame):
@@ -536,14 +560,27 @@ class Tab3(tk.Frame):
         tk.Frame.__init__(self, parent)
 
         lbl3 = tk.Label(self, text="Tab3")
-        lbl3.grid(column = 0, row = 1)
+        lbl3.grid(column = 0, row = 0)
+        #lbl1 = tk.Label(self, text="Tab1", font=LARGE_FONT)
+        #lbl1.grid(column=1, row=0, sticky='WE')
+        SHED1_lbl = tk.Label(self, text=SHED_req_to_start)
+        SHED1_lbl.grid(column=0, row=1)
+
+        def update_SHED_lbl(SHED_lbl):
+            def update():
+                SHED_lbl.configure(text=SHED_req_to_start)
+                SHED_lbl.after(10, update)
+
+            update()
+
+        update_SHED_lbl(SHED1_lbl)
 
 def Dataset_save():
     pass
 
 
 def stop_program():
-    global exit_case, SHED1,SHED2,SHED2
+    global exit_case, SHED1,SHED2,SHED3
     # if okay is selected, the program will terminate itself appropriately
     if messagebox.askokcancel("Quit","Do you want to quit?\nThis will terminate everything including data recording"):
         SHED1 = False
