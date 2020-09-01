@@ -335,40 +335,7 @@ def save_to_csv():
 
 
 
-def flow_check(): # Checks Flowrate for Back Flow, Also Checks Exhaust Flow
-    # ---------- Flow / Temperature Status --------- #
-    # SHED 1 Flow Status
-    if SHED1 is True: #and flowrate[6] > 0 and flowrate[5] > 0:
-        if flowrate[5] > flowrate[6]:
-            flow_status[0] = 1      # Flow Rate Normal
-        else:
-            flow_status[0] = 2      # Back Flow in Cold Loop
-    elif SHED1 is False:
-        flow_status[0] = 0          # SHED off - No Check needed
 
-    #SHED 2 Flow Status
-    # This is set up to check both cold and hot flows
-    if SHED2 is True:# and flowrate[2] > 0 and flowrate[3] > 0 and flowrate[4] > 0 and flowrate[5] > 0:
-        if flowrate[5] > flowrate[3] and flowrate[4] > flowrate[2]:
-            flow_status[1] = 1  # Flow rate normal
-        else:
-            if flowrate[5] < flowrate[3]:
-                flow_status[1] = 2  # Back Flow in cold loop
-            elif flowrate[4] < flowrate[2]:
-                flow_status[1] = 3  # Back Flow in Hot loop
-            else:
-                flow_status[1] = 4  # unknown Error
-    else:
-        flow_status[1] = 0  # SHED 2 not on
-
-    # SHED3 Flow Status
-    if SHED3 is True:# and flowrate[4] > 0 and flowrate[0] > 0:
-        if flowrate[4] > flowrate[0]:
-            flow_status[2] = 1  # Flow rate normal
-        else:
-            flow_status[2] = 3  # Back Flow in Hot Loop
-    else:
-        flow_status[2] = 0  # SHED 3 not on
 
     # Exhaust Flow Check
     exhaust_fan_check = DIOL_4[5]
@@ -584,7 +551,7 @@ def calc_delta_t(delta_t_text,h):
 def alarm_function():
     global SHED1, SHED2, SHED3, pump_text, extractor_fan, exhaust_valve, exhaust_damper
 
-    if alarm_status[0]+alarm_status[1]+alarm_status[2] == 0 :
+    if alarm_status[0]+alarm_status[1]+alarm_status[2] == 0:
         extractor_fan= 1
         exhaust_damper = 1
         exhaust_valve = [0,0]

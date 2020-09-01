@@ -25,6 +25,7 @@ exit_case = False  # when set to true all threads will close properly
 SHED1 = False      # to keep track of SHED status
 SHED2 = False
 SHED3 = False
+SHED_ready = [0,0,0]        # 0 is not requested, 1 is requested but not ready 2 is requested and ready
 ref_rate = 100  # refresh rate of value on GUI, might be updated via config file
 loc = ("config/config.xlsx")
 wb = xlrd.open_workbook(loc)
@@ -36,6 +37,9 @@ YY = int(sheet.cell_value(4, 1))
 ppg = [0] * 8
 for n in range(0, 8):
     ppg[n] = float(        sheet.cell_value(6, n + 1))  # Update Pulses per gallon according to the Manufacturer's Specs
+
+deadhead_protection = sheet.cell_value(22,1)
+valve_op_volt = sheet.cell_value(21,1)  # operational valve voltage -> changed to 5 for testing on 5V system .
 ##########################################################
 #                  PID Setup values                      #
 ##########################################################
@@ -70,7 +74,10 @@ cal2 = sheet.cell_value(13, 1)
 cal3 = sheet.cell_value(14, 1)
 cal4 = sheet.cell_value(15, 1)
 
-
+#######################################################################################################################
+###                                             Important functional                                                ###
+#######################################################################################################################
+alarm_status = [0,0,0]
 #######################################################################################################################
 ###                                              GUI stuff                                                          ###
 #######################################################################################################################
@@ -82,11 +89,24 @@ pump_width = 5
 flow_temp_width = 8
 valve_width = 10
 
+flow_status = [0,0,0] # Flow status check for checking if there is backflow: 0 is off, 1 is good to go, 2 is backflow in cold loop, 3 is backflow in hot loop
+temp_status = [False] * 8 # Temp Status Check to make sure flow temp is in operation range
+flowrate_status = [False] * 8 # Flowrate Checkup
+temp_lower_bound = [0] * 8
+temp_higher_bound = [0] * 8
+flow_lower_bound = [0] * 8
+flow_higher_bound = [0] * 8
+for i in range(0, len(temp_lower_bound)):
+    temp_lower_bound[i] = int(sheet.cell_value(26+i,1))
+    temp_higher_bound[i] = int(sheet.cell_value(26+i,2))
+    flow_lower_bound[i] = int(sheet.cell_value(36+i,1))
+    flow_higher_bound[i] = int(sheet.cell_value(36+i,2))
+
 
 
 def flash__(): # flash function for GUI flashing
     global flash_index
-    flash_index = 1- flash_index
+    flash_index = 1 - flash_index
 
 #######################################################################################################################
 ###                                   Input Variable Definition                                                     ###
@@ -170,6 +190,8 @@ def read_serial():
     # print(current_count, type(current_count))
     # print(fixed_int[1],type(fixed_int[1]))
 # update functions to be used for demo or non-demo
+
+
 def update_maq20():# include function if connected to MAQ20
     global DIOL_1,DIOL_2,DIOL_3,DIOL_4, T, AI
     DIOL_1 = (DIOL_mod1.read_data(0, number_of_channels=DIOL_mod1.get_number_of_channels()))
@@ -179,6 +201,8 @@ def update_maq20():# include function if connected to MAQ20
     T = (TTC_mod.read_data(0, number_of_channels=TTC_mod.get_number_of_channels()))
     AI = (AI_mod.read_data(0, number_of_channels=AI_mod.get_number_of_channels()))
     read_serial()
+
+
 def update_unhooked(): # update data with random integers to check functionality
     global DIOL_1, DIOL_2, DIOL_3, DIOL_4, T, AI
     for i in range (0,5):
@@ -195,8 +219,9 @@ def update_unhooked(): # update data with random integers to check functionality
 pump_io = [0]*8               # output digital: p1 is 0 in list
 valve_pos = [0]*8             # output analog
 flow_pulse = [0]*8          # input From Serial Port
-SHED_req_to_start = [False]*3   # 0: SHED1, 1:SHED2, 2:SHED3 |  | digital input: 0 for no request, 1 for request
-SHED_good_to_start = [False]*3  # 0: SHED2, 1: SHED2 |  | digital output: 0 for not ready, 1 for ready
+flow_temp = T
+#SHED_req_to_start = [False]*3   # 0: SHED1, 1:SHED2, 2:SHED3 |  | digital input: 0 for no request, 1 for request
+#SHED_good_to_start = [False]*3  # 0: SHED2, 1: SHED2 |  | digital output: 0 for not ready, 1 for ready
 door_seal = [0]*2           # 0: SHED2, 1: SHED2 |  | digital output: 0 for open, 1 for seal
 exhaustfan_request = 0      # Main Fan |  | digital output: 0 for no request, 1 for request
 exhaustfan_feedback = 0     # Main Fan feedback |  | digital input: 0 for off, 1 for on
@@ -213,16 +238,16 @@ SHED_pid = [0]*8            # 0: SHED2, 1: SHED3 calculated pid value
 pump_text = ['']*8          # on, off interpreted from raw value
 valve_text = ['']*8         # Valve position as text
 flowrate_text = ['']*8
-flow_temp_text = [''] *8
-SHED_temp_text = [''] *2
+flow_temp_text = ['']*8
+SHED_temp_text = ['']*2
 SHED_exhaust_valve_text = ['']*2
 exhaustfan_request_text = ''
 exhaustfan_feedback_text = ''
 
-flowrate_text_tab1 = [''] * 8
-pump_text_tab1 = [''] * 8
-flow_temp_text_tab1 = [''] * 8
-valve_text_tab1 = [''] * 8
+flowrate_text_tab1 = ['']*8
+pump_text_tab1 = ['']*8
+flow_temp_text_tab1 = ['']*8
+valve_text_tab1 = ['']*8
 flow_valve_text_tab1 = ['']*8
 
 
@@ -257,6 +282,82 @@ def calculated_values_update():
     ave_T_shed3 = round(sum(T_shed3) / float(len(T_shed3)), 2)
     SHED_temp = [ave_T_shed2, ave_T_shed3]
 
+
+
+
+def flow_check(): # Checks Flowrate for Back Flow, Also Checks Exhaust Flow
+    global flow_status, temp_status, SHED_good_to_start, flowrate_status
+    # ---------- Flow / Temperature Status --------- #
+    # temperature Status
+    for i in range(0,len(temp_lower_bound)):
+        if temp_lower_bound[i] < flow_temp[i] < temp_higher_bound[i]:
+            temp_status[i] = True
+        else:
+            temp_status[i] = False
+        if flow_lower_bound[i] < flowrate_value[i] < flow_higher_bound[i]:
+            flowrate_status[i] = True
+        else:
+            flowrate_status[i] = False
+    for i in range(0,8):   # Change for test cases
+        flowrate_status[i] = True
+        temp_status[i] = True
+    # SHED 1 Flow Status
+    if SHED1 is True:
+        if flowrate_value[5] >= flowrate_value[6]:
+            flow_status[0] = 1      # Flow Rate Normal
+        else:
+            flow_status[0] = 2      # Back Flow in Cold Loop
+
+        if (temp_status[5] is True) and (temp_status[6] is True) and (flowrate_status[5] is True) and (flowrate_status[6] is True) and (flow_status[0] == 1):
+            SHED_ready[0] = 2 # SHED 1 is ready
+        else:
+            SHED_ready[0] = 1  # SHED1 is requested, but not ready
+
+    else: # if SHED1 is False:
+        flow_status[0] = 0          # SHED off - No Check needed
+        SHED_ready[0] = 0 # to reset
+
+    #SHED 2 Flow Status
+
+    if SHED2 is True:
+        if (flowrate_value[5] >= flowrate_value[3]) and flowrate_value[4] >= flowrate_value[2]:
+            flow_status[0] = 1      # Flow Rate Normal
+        else:
+            if flowrate_value[5] < flowrate_value[3]:
+                flow_status[1] = 2  # Back Flow in cold loop
+            elif flowrate_value[4] < flowrate_value[2]:
+                flow_status[1] = 3  # Back Flow in Hot loop
+            else:
+                flow_status[1] = 4  # unknown Error
+
+        if (temp_status[5] is True) and (temp_status[3] is True) and (temp_status[4] is True) and (temp_status[2] is True)\
+                and (flowrate_status[5] is True) and (flowrate_status[3] is True) and (flowrate_status[4] is True) and (flowrate_status[2] is True) and (flow_status[1] == 1):
+            SHED_ready[1] = 2 # SHED 1 is ready
+        else:
+            SHED_ready[1] = 1  # SHED1 is requested, but not ready
+
+    else: #if SHED2 is False:
+        flow_status[1] = 0          # SHED off - No Check needed
+        SHED_ready[1] = 0 # to reset
+
+
+    # SHED3 Flow Status
+    if SHED3 is True:
+        if flowrate_value[4] >= flowrate_value[0]:
+            flow_status[2] = 1      # Flow Rate Normal
+        else:
+            flow_status[2] = 2      # Back Flow in Cold Loop
+
+        if (temp_status[4] is True) and (temp_status[0] is True) and (flowrate_status[4] is True) and (flowrate_status[0] is True) and (flow_status[2] == 1):
+            SHED_ready[2] = 2 # SHED 1 is ready
+        else:
+            SHED_ready[2] = 1  # SHED1 is requested, but not ready
+
+    else: #if SHED3 is False:
+        flow_status[2] = 0          # SHED off - No Check needed
+        SHED_ready[2] = 0 # to reset
+
+
 def text_update(): #Variable update function. to be used to update variables
     global pump_text, valve_text, flowrate_text, flow_temp_text, SHED_temp_text
     if demo == 1:
@@ -282,101 +383,120 @@ def text_update(): #Variable update function. to be used to update variables
 
 
 
-
-
-
-
-
 text_update()
 
 class SHEDoperation(tk.Frame):
 
     def __init__(self,parent, controller):
-
+        tk.Frame.__init__(self,parent)
+        self.start_btn1 = Button(self, width=25, font =LARGE_FONT)
+        self.start_btn2 = Button(self, width=24, font =LARGE_FONT)
+        self.start_btn3 = Button(self, width=24, font =LARGE_FONT)
+        self.manual_btn = Button(self, width=25, font =LARGE_FONT, text = "Enter Manual Mode")
+        
         def SHED_btn1_clicked():
-            global SHED1, SHED_req_to_start
+            global SHED1
             SHED1 = True
-            SHED_req_to_start[0] = True
-            if SHED_good_to_start[0]:
-                start_btn1.configure(text='SHED1: Operational', bg='green', command=SHED_btn1_stop)
+
+            if SHED_ready[0] == 2:
+                self.start_btn1.configure(text='SHED1: Operational', bg='green', command=SHED_btn1_stop)
+            elif SHED_ready[0] == 1:
+                self.start_btn1.configure(text='SHED1: Start Request SENT', bg = 'yellow', command = SHED_btn1_stop)
             else:
-                start_btn1.configure(text='SHED1: Start Request SENT', bg = 'yellow', command = SHED_btn1_stop)
+                pass
 
         def SHED_btn1_stop():
-            global SHED1, SHED_req_to_start
+            global SHED1, SHED_ready
             SHED1 = False
-            SHED_req_to_start[0] = False
-            start_btn1.configure(text="SHED1: Request to Start", command=SHED_btn1_clicked,
+            SHED_ready[0] = 0
+            self.start_btn1.configure(text="SHED1: Request to Start", command=SHED_btn1_clicked,
                                  bg="red")
 
         def SHED_btn2_clicked():
-            global SHED2, SHED_req_to_start
+            global SHED2, SHED_ready
             SHED2 = True
-            SHED_req_to_start[1] = True
-            if SHED_good_to_start[1]:
-                start_btn2.configure(text='SHED2: Operational', bg='green', command=SHED_btn2_stop)
+            #SHED_ready[1] = 1
+            if SHED_ready[1] == 2:
+                self.start_btn2.configure(text='SHED2: Operational', bg='green', command=SHED_btn2_stop)
+            elif SHED_ready[1] == 1:
+                self.start_btn2.configure(text='SHED2: Start Request SENT', bg = 'yellow', command = SHED_btn2_stop)
             else:
-                start_btn2.configure(text='SHED2: Start Request SENT', bg = 'yellow', command = SHED_btn2_stop)
+                pass
 
         def SHED_btn2_stop():
-            global SHED2, SHED_req_to_start
+            global SHED2, SHED_req_to_start#, start_btn2
+
             SHED2 = False
-            SHED_req_to_start[1] = False
-            start_btn2.configure(text="SHED2: Request to Start", command=SHED_btn2_clicked,
+            SHED_ready[1] = 0
+            self.start_btn2.configure(text="SHED2: Request to Start", command=SHED_btn2_clicked,
                                  bg="red")
 
         def SHED_btn3_clicked():
-            global SHED3, SHED_req_to_start
+            global SHED3, SHED_ready
             SHED3 = True
-            SHED_req_to_start[2] = True
-            if SHED_good_to_start[2]:
-                start_btn3.configure(text='SHED3: Operational', bg='green', command=SHED_btn3_stop)
+            if SHED_ready[2] == 2:
+                self.start_btn3.configure(text='SHED3: Operational', bg='green', command=SHED_btn3_stop)
+            elif SHED_ready[2] == 1:
+                self.start_btn3.configure(text='SHED3: Start Request SENT', bg = 'yellow', command = SHED_btn3_stop)
             else:
-                start_btn3.configure(text='SHED3: Start Request SENT', bg = 'yellow', command = SHED_btn3_stop)
+                pass
 
         def SHED_btn3_stop():
-            global SHED3, SHED_req_to_start
+            global SHED3, SHED_ready
             SHED3 = False
-            SHED_req_to_start[2] = False
-            start_btn3.configure(text="SHED3: Request to Start", command=SHED_btn3_clicked,
+            SHED_ready[2] = 0
+            self.start_btn3.configure(text="SHED3: Request to Start", command=SHED_btn3_clicked,
                                  bg="red")
-        tk.Frame.__init__(self,parent)
-        start_btn1 = Button(self, width=25, font =LARGE_FONT)
-        start_btn2 = Button(self, width=24, font =LARGE_FONT)
-        start_btn3 = Button(self, width=24, font =LARGE_FONT)
-        manual_btn = Button(self, width=25, font =LARGE_FONT, text = "Enter Manual Mode")
 
-        if not SHED1:
-            start_btn1.configure(text="SHED1: Request to Start", command=SHED_btn1_clicked, bg = 'red', font =LARGE_FONT)
-        else:
-            if SHED_good_to_start[0]:
-                start_btn1.configure (text="SHED1: Request to Start Sent", bg = 'yellow', command=SHED_btn1_stop)
+
+
+        def SHED_btn_update():
+            global SHED_ready
+            flow_check()
+            if SHED1:
+                if SHED_ready[0] == 2:
+                    self.start_btn1.configure(text='SHED1: Operational', bg='green', command=SHED_btn1_stop)
+                elif SHED_ready[0] == 1:
+                    self.start_btn1.configure(text='SHED1: Start Request SENT', bg = 'yellow', command = SHED_btn1_stop)
+                else:
+                    pass
             else:
-                start_btn1 = Button()
+                SHED_ready[0] = 0
+                self.start_btn1.configure(text="SHED1: Request to Start", command=SHED_btn1_clicked,bg="red")
 
-        if not SHED2:
-            start_btn2.configure(text="SHED2: Request to Start", command=SHED_btn2_clicked, bg = 'red', font =LARGE_FONT)
-        else:
-            if SHED_good_to_start[1]:
-                start_btn2.configure (text="SHED2: Request to Start Sent", bg = 'yellow', command=SHED_btn2_stop)
+            if SHED2:
+                if SHED_ready[1] == 2:
+                    self.start_btn2.configure(text='SHED2: Operational', bg='green', command=SHED_btn2_stop)
+                elif SHED_ready[1] == 1:
+                    self.start_btn2.configure(text='SHED2: Start Request SENT', bg = 'yellow', command = SHED_btn2_stop)
+                else:
+                    pass
             else:
-                start_btn2 = Button()
+                SHED_ready[1] = 0
+                self.start_btn2.configure(text="SHED2: Request to Start", command=SHED_btn2_clicked,bg="red")
 
-        if not SHED3:
-            start_btn3.configure(text="SHED3: Request to Start", command=SHED_btn3_clicked, bg = 'red', font =LARGE_FONT)
-        else:
-            if SHED_good_to_start[2]:
-                start_btn3.configure (text="SHED3: Request to Start Sent", bg = 'yellow', command=SHED_btn3_stop)
+            if SHED3:
+                if SHED_ready[2] == 2:
+                    self.start_btn3.configure(text='SHED3: Operational', bg='green', command=SHED_btn3_stop)
+                elif SHED_ready[2] == 1:
+                    self.start_btn3.configure(text='SHED3: Start Request SENT', bg = 'yellow', command = SHED_btn3_stop)
+                else:
+                    pass
             else:
-                start_btn3 = Button()
+                SHED_ready[2] = 0
+                self.start_btn3.configure(text="SHED3: Request to Start", command=SHED_btn3_clicked,bg="red")
+            self.start_btn2.after(ref_rate, SHED_btn_update)
 
-        start_btn1.grid(column=0, row=0)
+        self.start_btn1.grid(column=0, row=0)
 
-        start_btn2.grid(column=1, row=0)
+        self.start_btn2.grid(column=1, row=0)
 
-        start_btn3.grid(column=2, row=0)
+        self.start_btn3.grid(column=2, row=0)
 
-        manual_btn.grid(column=3, row=0)
+        self.manual_btn.grid(column=3, row=0)
+
+        SHED_btn_update()
+
 
 class FlowDisplay(tk.Frame):
     def __init__(self, parent, controller):
@@ -434,38 +554,169 @@ def valve_position(valve_text,n):
     valve_text_update()
 
 
-class FlowMain(tk.Frame):
+def FlowMonitor(app_window, item1, item2):
+    hotLabel0 = Label(app_window, text="Hot", font=("Bold", 10), padx=9)
+    coldLabel0 = Label(app_window, text="Cold", font=("Bold", 10), padx=9)
+    hotLabel0.grid(row=2, column=0)
+    coldLabel0.grid(row=3, column=0)
+    flowrate_text_tab1[item1] = Label(app_window, padx=10, width=flow_width)
+    flowrate_text_tab1[item2] = Label(app_window, padx=10, width=flow_width)
+    flowrate_text_tab1[item1].grid(row=2, column=2)
+    flowrate_text_tab1[item2].grid(row=3, column=2)
+    pump_text_tab1[item1] = Label(app_window, padx=10, width=pump_width)
+    pump_text_tab1[item2] = Label(app_window, padx=10, width=pump_width)
+    pump_text_tab1[item1].grid(row=2, column=1)
+    pump_text_tab1[item2].grid(row=3, column=1)
+    flow_temp_text_tab1[item1] = Label(app_window, padx=10, width=flow_temp_width)
+    flow_temp_text_tab1[item2] = Label(app_window, padx=10, width=flow_temp_width)
+    flow_temp_text_tab1[item1].grid(row=2, column=3)
+    flow_temp_text_tab1[item2].grid(row=3, column=3)
+    flow_valve_text_tab1[item1] = Label(app_window, padx=10, width=valve_width)
+    flow_valve_text_tab1[item2] = Label(app_window, padx=10, width=valve_width)
+    flow_valve_text_tab1[item1].grid(row=2, column=4)
+    flow_valve_text_tab1[item2].grid(row=3, column=4)
 
-    def __init__(self,parent,controller):
-        ttk.LabelFrame.__init__(self, text = "Main Loop")
-        hotLabel0 = Label(self, text="Hot", font=("Bold", 10), padx=9)
-        coldLabel0 = Label(self, text="Cold", font=("Bold", 10), padx=9)
-        hotLabel0.grid(row=2, column=0)
-        coldLabel0.grid(row=3, column=0)
-        flowrate_text_tab1[4] = Label(self, padx=10, width=flow_width)
-        flowrate_text_tab1[5] = Label( self, padx=10, width=flow_width)
-        flowrate_text_tab1[4].grid(row=2, column=2)
-        flowrate_text_tab1[5].grid(row=3, column=2)
-        pump_text_tab1[4] = Label(self, padx=10, width=pump_width)
-        pump_text_tab1[5] = Label(self, padx=10, width=pump_width)
-        pump_text_tab1[4].grid(row=2, column=1)
-        pump_text_tab1[5].grid(row=3, column=1)
-        flow_temp_text_tab1[4] = Label(self, padx=10, width=flow_temp_width)
-        flow_temp_text_tab1[5] = Label(self, padx=10, width=flow_temp_width)
-        flow_temp_text_tab1[4].grid(row=2, column=3)
-        flow_temp_text_tab1[5].grid(row=3, column=3)
-        flow_valve_text_tab1[4] = Label(self, padx=10, width=valve_width)
-        flow_valve_text_tab1[5] = Label(self, padx=10, width=valve_width)
-        flow_valve_text_tab1[4].grid(row=2, column=4)
-        flow_valve_text_tab1[5].grid(row=3, column=4)
+    lower = min(item1,item2)
+    larger = max(item1,item2)
 
-        for n in range(4, 6):
-            pump_status(pump_text_tab1, n)
-            flow_calculate(flowrate_text_tab1, n)
-            flow_temp_status(flow_temp_text_tab1, n)
-            valve_position(flow_valve_text_tab1, n)
+    for n in range(lower,larger+1):
+        pump_status(pump_text_tab1, n)
+        flow_calculate(flowrate_text_tab1, n)
+        flow_temp_status(flow_temp_text_tab1, n)
+        valve_position(flow_valve_text_tab1, n)
+
+def AlarmMonitor(app_window):
+    SHED1alarm_label1 = Label(app_window, text="SHED1: ")
+    SHED2alarm_label1 = Label(app_window, text="SHED2: ")
+    SHED3alarm_label1 = Label(app_window, text="SHED3: ")
+    SHED1alarm_label1.grid(row=1, column=1)
+    SHED2alarm_label1.grid(row=2, column=1)
+    SHED3alarm_label1.grid(row=3, column=1)
+    SHEDalarm_label_status = [Label(app_window, text=''),Label(app_window, text=''),Label(app_window, text='')]
+    for i in range(0,3):
+        SHEDalarm_label_status[i].grid(row=i + 1, column=2)
+
+        def SHEDalarm_label1_update(label):
+            def update():
+                for i in range(0, 3):
+                    if alarm_status[i] == 0:
+                        label[i].configure(text="inactive", fg='black')
+                    elif alarm_status[i] == 1:
+                        label[i].configure(text="ACTIVE", fg='red')
+                    else:
+                        label[i].configure(text='CODE ERROR')
+                label[0].after(ref_rate, update)
+
+            update()
+
+        SHEDalarm_label1_update(SHEDalarm_label_status)
 
 
+def AlarmFunction():
+    global SHED1, SHED2, SHED3, exhaustfan_request, exhaust_damper, SHED_exhaust_valve
+
+    # NORMAL OPERATION
+    if alarm_status[0]+alarm_status[1]+alarm_status[2] == 0:
+        exhaustfan_request = 1
+        exhaust_damper = 1
+        SHED_exhaust_valve = [0,0]
+    else:
+        exhaustfan_request = 1
+        exhaust_damper = 0          # Close exhaust damper to allow for full vacuum
+
+        #SHED 1 ALARM
+        if alarm_status[0] == 1:
+            SHED1 = False           # set SHED 1 to off
+            SHED_ready[0]=0
+            #valve_pos[6] = 0        # close valve for cold water flow into External chiller.
+        else:
+            pass
+        #SHED2 ALARM
+        if alarm_status[1] == 1:
+            SHED_exhaust_valve[0] = 1   # Open Exhaust valve at rear of SHED2
+            SHED2 = False
+            SHED_ready[1] = 0
+        else:
+            SHED_exhaust_valve[0] = 0
+        #SHED3 ALARM
+        if alarm_status[1] ==1:
+            SHED_exhaust_valve[1] = 1
+            SHED3 = False
+            SHED_ready[2] = 0
+        else:
+            SHED_exhaust_valve[1] = 0
+
+
+def ExhaustMonitor(app_window):
+    damper_label1 = Label(app_window, text="Damper Position: ", font=("Bold", 10), justify=RIGHT)
+    damper_label1.grid(row=0, column=0, sticky=E)
+    damper_position_label1 = Label(app_window, text="test")
+    damper_position_label1.grid(row=0, column=1)
+
+    def damper_label1_update(exhaust_damper_label):
+        def update():
+            if exhaust_damper == 1:
+                exhaust_damper_label.configure(text="CLOSED")
+            else:
+                exhaust_damper_label.configure(text="OPEN")
+            exhaust_damper_label.after(ref_rate, update)
+        update()
+
+    damper_label1_update(damper_position_label1)
+    exhaustfan_label1 = Label(app_window, text="Exhaust fan: ", font=("Bold", 10))
+    exhaustfan_label1.grid(row=1, column=0, sticky=E)
+    exhaustfan_io_label1 = Label(app_window, text="test")
+    exhaustfan_io_label1.grid(row=1, column=1)
+    exhaustfan_feedback_label1 = Label(app_window, text="test2")
+    exhaustfan_feedback_label1.grid(row=1, column=2)
+
+    def extractor_status_update(extractor_fan_label, extractor_status_label):
+        def update():
+            if exhaustfan_request == 1:
+                extractor_fan_label.configure(text="Requested", fg='black')
+            else:
+                extractor_fan_label.configure(text="off", fg="black")
+                extractor_status_label.configure(text="Zero Flow", fg="black")
+            if exhaustfan_feedback == 1:
+                extractor_status_label.configure(text="Confirmed")
+                extractor_fan_label.configure(fg="black")
+            else:
+                fgflash = ("black", "red")
+                extractor_status_label.configure(text="Zero Flow", fg=fgflash[flash_index])
+            extractor_fan_label.after(ref_rate, update)
+
+        update()
+
+    extractor_status_update(exhaustfan_io_label1, exhaustfan_feedback_label1)
+    SHED2_label1 = Label(app_window, text="SHED2 Exhaust: ", font=("Bold", 10), justify=RIGHT)
+    SHED2_label1.grid(row=2, column=0, sticky=E)
+    SHED2_valve_position_label1 = Label(app_window, text="test")
+    SHED2_valve_position_label1.grid(row=2, column=1)
+    SHED3_label1 = Label(app_window, text="SHED3 Exhaust: ", font=("Bold", 10), justify=RIGHT)
+    SHED3_label1.grid(row=3, column=0, sticky=E)
+    SHED3_valve_position_label1 = Label(app_window, text="test")
+    SHED3_valve_position_label1.grid(row=3, column=1)
+
+    def SHED_valvetext_update(valve_label2, valve_label3):
+        def update():
+            if SHED_exhaust_valve[0] == 1:
+                valve_label2.configure(text="OPEN")
+            elif SHED_exhaust_valve[0] == 0:
+                valve_label2.configure(text="CLOSED")
+            else:
+                valve_label2.configure(text='error')
+            if SHED_exhaust_valve[1] == 1:
+                valve_label3.configure(text="OPEN")
+            elif SHED_exhaust_valve[1] == 0:
+                valve_label3.configure(text="CLOSED")
+            else:
+                valve_label3.configure(text='error')
+
+            valve_label3.after(ref_rate, update)
+
+        update()
+
+    SHED_valvetext_update(SHED2_valve_position_label1, SHED3_valve_position_label1)
 
 
 class MainApplication(tk.Tk):
@@ -503,29 +754,83 @@ class MainApplication(tk.Tk):
         self.root.mainloop()
 
 
+def SHED_Status(self):
+    shed_frame = ttk.LabelFrame(self, text="SHED status")
+    shed_frame.grid(column=0, row=1)
+    SHED1_lbl = tk.Label(shed_frame, text='')
+    SHED1_lbl.grid(column=0, row=1)
+
+    def update_SHED_lbl(SHED_lbl):
+        def update():
+            txt = ['', '', '']
+            for i in range(0, 3):
+                if SHED_ready[i] == 0:
+                    txt[i] = "OFF"
+                elif SHED_ready[i] == 1:
+                    txt[i] = "Req. Sent"
+                elif SHED_ready[i] == 2:
+                    txt[i] = "SHED" + str(i) + " Ready"
+                else:
+                    txt[i] = 'error'
+            SHED_lbl.configure(text=txt[0] + '\n' + txt[1] + '\n' + txt[2])
+            SHED_lbl.after(10, update)
+
+        update()
+
+    update_SHED_lbl(SHED1_lbl)
+
+
 class Tab1(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         flow_frame = ttk.LabelFrame(self, text = "Flow Monitoring")
-        flow_frame.grid(column = 0, row = 0, padx = 10, pady = 10, )
-        #mainflow = FlowDisplay(self, self)
-        #mainflow.pack()
-        lbl1= tk.Label(flow_frame, text="Tab1", font=LARGE_FONT)
-        lbl1.grid(column =1, row=0, sticky = 'WE')
+        flow_frame.grid(column = 0, row = 0, padx = 10, pady = 10,rowspan=25 )
+        flow_main_frame = ttk.LabelFrame(flow_frame, text = "Main Flow")
+        flow_main_frame.grid(column = 0, row = 0, pady=5)
+        FlowMonitor(flow_main_frame,4,5)
+        flow_shed1_frame = ttk.LabelFrame(flow_frame, text = "SHED1 Flow")
+        flow_shed1_frame.grid(column = 0, row = 1, pady = 5)
+        FlowMonitor(flow_shed1_frame,7,6)
+        flow_shed2_frame = ttk.LabelFrame(flow_frame, text = "SHED2 Flow")
+        flow_shed2_frame.grid(column = 0, row = 2, pady=5)
+        FlowMonitor(flow_shed2_frame,2,3)
+        flow_shed3_frame = ttk.LabelFrame(flow_frame, text = "SHED3 Flow")
+        flow_shed3_frame.grid(column = 0, row = 3, pady=5)
+        FlowMonitor(flow_shed3_frame,0,1)
+        #mainflow = FlowDisplay(self, flow_frame)
+        #mainflow.grid(column = 10, row = 10)
         shed_frame = ttk.LabelFrame(self, text = "SHED status")
-        shed_frame.grid(column = 0,row = 1)
-        SHED1_lbl = tk.Label(shed_frame, text = SHED_req_to_start)
+        shed_frame.grid(column = 1,row = 0, padx=10, pady=10)
+        SHED1_lbl = tk.Label(shed_frame, text = '')
         SHED1_lbl.grid(column = 0, row = 1)
+
         def update_SHED_lbl(SHED_lbl):
             def update():
-                SHED_lbl.configure(text = SHED_req_to_start)
+                txt = ['','','']
+                for i in range(0,3):
+                    if SHED_ready[i] == 0:
+                        txt[i]  = "OFF"
+                    elif SHED_ready[i] == 1:
+                        txt[i] = "Req. Sent"
+                    elif SHED_ready[i] == 2:
+                        txt[i] = "SHED" +str(i) + " Ready"
+                    else:
+                        txt[i] = 'error'
+                SHED_lbl.configure(text = txt[0] +'\n' +txt[1] + '\n' + txt[2])
                 SHED_lbl.after(10, update)
             update()
         update_SHED_lbl(SHED1_lbl)
-        #main_fr
-        #label_label1 = tk.Label(self, text = "Where will this label go?!")
-        #label_label1.grid(column = 1, row = 0)
+
+        # ALARM FRAME
+        alarm_frame_tab1 = ttk.LabelFrame(self,text="Alarm Status")
+        alarm_frame_tab1.grid(column=3,row=0, padx=10, pady=10)
+        AlarmMonitor(alarm_frame_tab1)
+
+        # EXHAUST FRAME
+        exhaust_frame_tab1 = ttk.LabelFrame(self, text="Exhaust Status")
+        exhaust_frame_tab1.grid(column=2, row=0, padx=10, pady=10, rowspan =2)
+        ExhaustMonitor(exhaust_frame_tab1)
 
 
 class Tab2(tk.Frame):
@@ -541,17 +846,7 @@ class Tab2(tk.Frame):
 
         #lbl1 = tk.Label(self, text="Tab1", font=LARGE_FONT)
         #lbl1.grid(column=1, row=0, sticky='WE')
-        SHED1_lbl = tk.Label(self, text=SHED_req_to_start)
-        SHED1_lbl.grid(column=0, row=1)
-
-        def update_SHED_lbl(SHED_lbl):
-            def update():
-                SHED_lbl.configure(text=SHED_req_to_start)
-                SHED_lbl.after(10, update)
-
-            update()
-
-        update_SHED_lbl(SHED1_lbl)
+        SHED_Status(self)
 
 
 class Tab3(tk.Frame):
@@ -561,22 +856,36 @@ class Tab3(tk.Frame):
 
         lbl3 = tk.Label(self, text="Tab3")
         lbl3.grid(column = 0, row = 0)
-        #lbl1 = tk.Label(self, text="Tab1", font=LARGE_FONT)
+        #lbl1 = tk.Label(self, text="Tab1", font=LARGE_FONTn)
         #lbl1.grid(column=1, row=0, sticky='WE')
-        SHED1_lbl = tk.Label(self, text=SHED_req_to_start)
+        shed_frame = ttk.LabelFrame(self, text = "SHED status")
+        shed_frame.grid(column = 0,row = 1)
+        SHED1_lbl = tk.Label(shed_frame, text='')
         SHED1_lbl.grid(column=0, row=1)
 
         def update_SHED_lbl(SHED_lbl):
             def update():
-                SHED_lbl.configure(text=SHED_req_to_start)
+                txt = ['', '', '']
+                for i in range(0, 3):
+                    if SHED_ready[i] == 0:
+                        txt[i] = "OFF"
+                    elif SHED_ready[i] == 1:
+                        txt[i] = "Req. Sent"
+                    elif SHED_ready[i] == 2:
+                        txt[i] = "SHED" + str(i) + " Ready"
+                    else:
+                        txt[i] = 'error'
+                SHED_lbl.configure(text=txt[0] + '\n' + txt[1] + '\n' + txt[2])
                 SHED_lbl.after(10, update)
 
             update()
 
         update_SHED_lbl(SHED1_lbl)
 
+
 def Dataset_save():
-    pass
+    start_date_time = datetime.now().strftime("%d-%b-Y_H-%M-%S")
+    filename = str(priority) +"_LOGfile_" +str(start_date_time)
 
 
 def stop_program():
@@ -590,5 +899,5 @@ def stop_program():
         sys.exit()
 sched = BackgroundScheduler()
 sched.start()
-# sched.add_job(background_communication)
+sched.add_job(text_update, 'interval', seconds = .5)
 app = MainApplication()
